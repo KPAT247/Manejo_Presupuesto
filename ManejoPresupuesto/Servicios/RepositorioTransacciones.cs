@@ -39,7 +39,7 @@ namespace ManejoPresupuesto.Servicios
         public async Task Actualizar(Transaccion transaccion, decimal montoAnterior, int cuentaAnteriorId)
         {
             using var connection = new SqlConnection(connectionString);
-            await connection.ExecuteAsync(" Transacciones_Actualizar",
+            await connection.ExecuteAsync("Transacciones_Actualizar",
                 new
                 {
                     transaccion.Id,
@@ -58,7 +58,7 @@ namespace ManejoPresupuesto.Servicios
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<Transaccion>(
                 @"SELECT Transacciones.*,cat.TipoOperacionId 
-                FROM Transaccionnes 
+                FROM Transacciones 
                 INNER JOIN Categorias cat 
                 On cat.Id = Transacciones.CategoriaId
                 WHERE Transacciones.Id = @Id AND Transacciones.UsuarioId = @UsuarioId", 
